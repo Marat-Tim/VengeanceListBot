@@ -2,7 +2,7 @@
 
 namespace VengeanceListBot.Implementation;
 
-public class InMemoryUserManager : IUserManager
+public class InMemoryDialogueManager : IDialogueManager
 {
     private readonly ISet<long> _withWhoWeHaveDialogue = new HashSet<long>();
 

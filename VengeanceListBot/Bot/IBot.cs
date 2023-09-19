@@ -4,7 +4,7 @@ public interface IBot
 {
     event Action<IBot, Message> OnMessageReceived;
 
-    Message Send(long chatId, string text);
+    Message Send(long id, string text);
 
     void Start();
 }

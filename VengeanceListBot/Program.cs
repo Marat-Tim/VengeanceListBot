@@ -18,12 +18,24 @@ var provider = new ServiceCollection()
     })
     .AddSingleton<IToken, TokenByConsoleUi>()
     .AddSingleton<IBot, Bot>()
-    .AddSingleton<IUserManager, InMemoryUserManager>()
+    .AddSingleton<IDialogueManager, InMemoryDialogueManager>()
     .AddSingleton<INewUserHandler, NewUserHandler>()
-    .AddSingleton<App>()
+    .AddSingleton<IVengeanceListManager, VengeanceListManager>()
+    .AddScoped<MainHandler>()
     .BuildServiceProvider();
 
-provider.GetService<App>()!.Run();
+var bot = provider.GetService<IBot>()!;
+
+// ReSharper disable once UnusedParameter.Local
+// ReSharper disable once VariableHidesOuterVariable
+bot.OnMessageReceived += (bot, message) =>
+{
+    var scope = provider.CreateScope();
+    
+    scope.ServiceProvider.GetService<MainHandler>()!.Handle(bot, message);
+};
+
+bot.Start();
 
 LogManager.Shutdown();
 
