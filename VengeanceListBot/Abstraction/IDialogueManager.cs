@@ -1,6 +1,6 @@
 ﻿namespace VengeanceListBot.Abstraction;
 
-public interface IUserManager
+public interface IDialogueManager
 {
     bool HasDialogueWith(long userId);
 
