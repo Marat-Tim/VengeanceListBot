@@ -30,6 +30,11 @@ public class VengeanceList : IVengeanceList
             ++i;
         }
 
+        if (i == 0)
+        {
+            sb.Append("Пусто");
+        }
+
         bot.Send(userId, sb.ToString());
     }
 

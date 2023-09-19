@@ -2,7 +2,7 @@
 
 namespace VengeanceListBot.Implementation;
 
-public class VengeanceListManager : IVengeanceListManager
+public class InMemoryVengeanceListManager : IVengeanceListManager
 {
     private readonly IDictionary<long, IVengeanceList> _userToVengeanceList = 
         new Dictionary<long, IVengeanceList>();

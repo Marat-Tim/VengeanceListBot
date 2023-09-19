@@ -20,7 +20,8 @@ var provider = new ServiceCollection()
     .AddSingleton<IBot, Bot>()
     .AddSingleton<IDialogueManager, InMemoryDialogueManager>()
     .AddSingleton<INewUserHandler, NewUserHandler>()
-    .AddSingleton<IVengeanceListManager, VengeanceListManager>()
+    .AddSingleton<IVengeanceListManager, InMemoryVengeanceListManager>()
+    .AddSingleton<ICommandAllHandler, CommandAllHandler>()
     .AddScoped<MainHandler>()
     .BuildServiceProvider();
 
