@@ -23,23 +23,35 @@ var provider = new ServiceCollection()
     .AddSingleton<IVengeanceListManager, InMemoryVengeanceListManager>()
     .AddSingleton<ICommandAllHandler, CommandAllHandler>()
     .AddSingleton<ICommandAddHandler, CommandAddHandler>()
+    .AddSingleton<IAnnunciator, Annunciator>()
     .AddScoped<MainHandler>()
     .BuildServiceProvider();
 
-var bot = provider.GetService<IBot>()!;
-
-// ReSharper disable once UnusedParameter.Local
-// ReSharper disable once VariableHidesOuterVariable
-bot.OnMessageReceived += (bot, message) =>
-{
-    var scope = provider.CreateScope();
-    
-    scope.ServiceProvider.GetService<MainHandler>()!.Handle(bot, message);
-};
-
-bot.Start();
+StartNotification(provider);
+StartHandleMessages(provider);
 
 LogManager.Shutdown();
+
+void StartNotification(ServiceProvider serviceProvider)
+{
+    serviceProvider.GetService<IAnnunciator>()!.Start();
+}
+
+void StartHandleMessages(ServiceProvider serviceProvider)
+{
+    var bot = serviceProvider.GetService<IBot>()!;
+
+    // ReSharper disable once UnusedParameter.Local
+    // ReSharper disable once VariableHidesOuterVariable
+    bot.OnMessageReceived += (bot, message) =>
+    {
+        var scope = serviceProvider.CreateScope();
+
+        scope.ServiceProvider.GetService<MainHandler>()!.Handle(bot, message);
+    };
+
+    bot.Start();
+}
 
 
 

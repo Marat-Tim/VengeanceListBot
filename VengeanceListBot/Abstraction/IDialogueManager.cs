@@ -5,4 +5,6 @@ public interface IDialogueManager
     bool HasDialogueWith(long userId);
 
     void StartDialogueWith(long userId);
+
+    IEnumerable<long> GetDialogueIds();
 }

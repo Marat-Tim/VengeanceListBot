@@ -15,4 +15,9 @@ public class InMemoryDialogueManager : IDialogueManager
     {
         _withWhoWeHaveDialogue.Add(userId);
     }
+
+    public IEnumerable<long> GetDialogueIds()
+    {
+        return _withWhoWeHaveDialogue;
+    }
 }
