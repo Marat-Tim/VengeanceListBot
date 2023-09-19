@@ -7,16 +7,19 @@ public class NewUserHandler : INewUserHandler
 {
     private readonly IVengeanceListManager _vengeanceListManager;
 
-    public NewUserHandler(IVengeanceListManager vengeanceListManager)
+    private readonly ICommandAllHandler _commandAllHandler;
+
+    public NewUserHandler(IVengeanceListManager vengeanceListManager, ICommandAllHandler commandAllHandler)
     {
         _vengeanceListManager = vengeanceListManager;
+        _commandAllHandler = commandAllHandler;
     }
 
     public void Handle(IBot bot, Message message)
     {
         var chatId = message.Chat.Id;
         bot.Send(chatId, Constants.Greeting);
-        _vengeanceListManager.GetVengeanceListForUser(message.User.Id).SendToUser(bot, chatId);
+        _commandAllHandler.Handle(bot, message);
     }
     
 }

@@ -22,6 +22,7 @@ var provider = new ServiceCollection()
     .AddSingleton<INewUserHandler, NewUserHandler>()
     .AddSingleton<IVengeanceListManager, InMemoryVengeanceListManager>()
     .AddSingleton<ICommandAllHandler, CommandAllHandler>()
+    .AddSingleton<ICommandAddHandler, CommandAddHandler>()
     .AddScoped<MainHandler>()
     .BuildServiceProvider();
 

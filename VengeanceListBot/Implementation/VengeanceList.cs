@@ -23,14 +23,14 @@ public class VengeanceList : IVengeanceList
     {
         StringBuilder sb = new StringBuilder();
         sb.Append($"Текущий список отмщений:{Environment.NewLine}");
-        int i = 0;
+        int i = 1;
         foreach (var vengeance in this)
         {
             sb.Append($"{i}. {vengeance}{Environment.NewLine}");
             ++i;
         }
 
-        if (i == 0)
+        if (i == 1)
         {
             sb.Append("Пусто");
         }
