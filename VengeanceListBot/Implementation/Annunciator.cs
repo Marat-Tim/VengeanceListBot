@@ -43,7 +43,7 @@ public class Annunciator : IAnnunciator, IDisposable
         foreach (var userId in _dialogueManager.GetDialogueIds())
         {
             var vengeanceList = _vengeanceListManager.GetVengeanceListForUser(userId);
-            vengeanceList.SendToUser(_bot, userId);
+            vengeanceList.NotifyUser(_bot, userId);
         }
         _logger.LogInformation("Оповестил всех пользователей");
     }

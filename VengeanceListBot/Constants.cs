@@ -8,5 +8,7 @@ public static class Constants
 /add - чтобы добавить нового человека в список
 /all - чтобы посмотреть на текущий список отмщений";
 
+    public static readonly TimeSpan TimeBetweenMessages = TimeSpan.FromSeconds(1);
+
     public static readonly TimeSpan TimeBetweenNotifications = TimeSpan.FromDays(1);
 }

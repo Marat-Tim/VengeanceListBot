@@ -8,6 +8,6 @@ public record Vengeance(string Name)
 
     public override string ToString()
     {
-        return Name;
+        return $"День {(DateTime.Now - StartDate).Days}. {Name} ещё не отмщен";
     }
 }

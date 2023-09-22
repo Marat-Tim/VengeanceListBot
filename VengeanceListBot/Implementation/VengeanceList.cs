@@ -26,7 +26,7 @@ public class VengeanceList : IVengeanceList
         int i = 1;
         foreach (var vengeance in this)
         {
-            sb.Append($"{i}. {vengeance}{Environment.NewLine}");
+            sb.Append($"{i}. {vengeance.Name}{Environment.NewLine}");
             ++i;
         }
 
@@ -36,6 +36,15 @@ public class VengeanceList : IVengeanceList
         }
 
         bot.Send(userId, sb.ToString());
+    }
+
+    public void NotifyUser(IBot bot, long userId)
+    {
+        foreach (var vengeance in this)
+        {
+            bot.Send(userId, vengeance.ToString());
+            Thread.Sleep(Constants.TimeBetweenMessages);
+        }
     }
 
     IEnumerator IEnumerable.GetEnumerator()

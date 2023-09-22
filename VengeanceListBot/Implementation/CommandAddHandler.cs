@@ -20,7 +20,7 @@ public class CommandAddHandler : ICommandAddHandler
     {
         var chatId = message.Chat.Id;
         var vengeanceList = _vengeanceListManager.GetVengeanceListForUser(message.User.Id);
-        bot.Send(chatId, "Ввведите текст, который нужно добавить в список отмщений");
+        bot.Send(chatId, "Ввведите имя человека, которого нужно добавить в список отмщений");
         var reply = await bot.WaitForMessage(msg => msg.Chat.Id == chatId);
         vengeanceList.Add(new Vengeance(reply.Text));
         bot.Send(chatId, "Отмщение успешно добавлено");
